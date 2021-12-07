@@ -5,8 +5,7 @@ var ObjectId = require("mongoose").Types.ObjectId;
 
 exports.addToList = (req, res) => {
   const item = req.body;
-
-  if (req.user.list.every((mov) => mov.Title !== item.Title) === true) {
+  if (req.user.list.every((mov) => mov.itemName !== item.itemName) === true) {
     req.user.list.push(item);
     req.user.save((err) => {
       if (err) {
@@ -21,6 +20,11 @@ exports.addToList = (req, res) => {
           },
         });
       }
+    });
+  }
+  else{
+    res.status(200).json({
+      message: { msgBody: "Already Added", msgError: true },
     });
   }
   

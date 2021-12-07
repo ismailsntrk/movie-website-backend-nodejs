@@ -11,6 +11,10 @@ const userSchema = new mongoose.Schema(
       required: true,
       max: 48,
     },
+    addres: {
+      type: String,
+      trim: true,
+    },
     email: {
       type: String,
       trim: true,
@@ -26,7 +30,7 @@ const userSchema = new mongoose.Schema(
     role: {
       type: String,
       enum: ["user", "admin"],
-      required: true,
+     
     },
     list: {
       type: Array,
@@ -35,11 +39,11 @@ const userSchema = new mongoose.Schema(
     lastWatched: {
       type: Array,
     },
+
     resetLink: {
       data: String,
       default: "",
     },
-
   },
   { timestamps: true }
 );

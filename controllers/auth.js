@@ -33,7 +33,7 @@ exports.signup = (req, res) => {
       var transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-          user: "serus2005@gmail.com",
+          user: "ismailsenturk102@gmail.com",
           pass: "canond550",
         },
       });
@@ -108,7 +108,7 @@ exports.forgotPassword = (req, res) => {
     var transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-          user: "serus2005@gmail.com",
+          user: "ismailsenturk102@gmail.com",
           pass: "canond550",
         },
       });

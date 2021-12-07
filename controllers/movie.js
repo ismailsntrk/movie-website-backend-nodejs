@@ -5,70 +5,19 @@ var ObjectId = require("mongoose").Types.ObjectId;
 
 exports.newMovie = (req, res) => {
   const {
-    Title,
-    Year,
-    Rated,
-    Released,
-    Runtime,
-    Genre,
-    Director,
-    Writer,
-    Actors,
-    Plot,
-    Language,
-    Country,
-    Awards,
-    Poster,
-    Ratings,
-    Metascore,
-    imdbRating,
-    imdbVotes,
-    imdbID,
-    Type,
-    DVD,
-    BoxOffice,
-    Production,
-    Website,
-    Response,
-    movieUrl,
-    watchCounter,
+    itemName,itemPrice,itemDiscountedPrice,itemImage,itemType,watchCounter,itemGenre
   } = req.body;
 
   let newMovie = new Movie({
-    Title,
-    Year,
-    Rated,
-    Released,
-    Runtime,
-    Genre,
-    Director,
-    Writer,
-    Actors,
-    Plot,
-    Language,
-    Country,
-    Awards,
-    Poster,
-    Ratings,
-    Metascore,
-    imdbRating,
-    imdbVotes,
-    imdbID,
-    Type,
-    DVD,
-    BoxOffice,
-    Production,
-    Website,
-    Response,
-    movieUrl,
-    watchCounter,
+    itemName,itemPrice,itemDiscountedPrice,itemImage,itemType,watchCounter,itemGenre
   });
+  
   newMovie.save((err, success) => {
-    if (err) {
+    if (err) {  
       console.log("Activation Error: ", err);
       return res.status(400).json({ error: "Movie didn t added to database" });
     }
-    console.log(Title + " filmi Eklendi");
+    console.log(itemName + " Ürün Eklendi");
     res.json({
       message: "Success!",
     });
@@ -100,6 +49,7 @@ exports.getMovies = (req, res) => {
     if (err) {
       res.status(500).send(err);
     } else {
+    
       res.status(200).send(data);
     }
   });
@@ -112,19 +62,23 @@ exports.getCurrentMovie = (req, res) => {
     if (err) {
       res.status(500).send(err);
     } else {
-      res.status(200).send(data.find((item) => item.Title == title));
+      res.status(200).send(data.find((item) => item.itemName == title));
     }
   });
 };
 
 exports.deleteMovie = (req, res) => {
+  
+  if(req.params.id){
   const id = req.params.id;
 
   Movie.find((err, data) => {
     if (err) {
+      
       res.status(500).send(err);
     } else {
+      
       res.status(200).send(data.find((item) => item._id == id).delete());
     }
-  });
+  });}
 };
